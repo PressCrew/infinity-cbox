@@ -1,43 +1,37 @@
-## Infinity WordPress Theming Engine
+## Commons-In-A-Box Default Theme
 
-Infinity is a free WordPress theme which can be used on its own or as an
-extremely powerful parent theme.
+This is the theme which is bundled with the Commons-In-A-Box plugin.
+
+Any and all contributions are welcome. Please create a new GitHub issue to get our attention!
 
 ### Authors
 
-* Marshall Sorenson
-* Bowe Frankema
+* [Marshall Sorenson](https://github.com/MrMaz)
+* [Bowe Frankema](https://github.com/BoweFrankema)
+* [Boone Gorges](https://github.com/boonebgorges)
+* [r-a-y](https://github.com/r-a-y)
+* [Christian Wach](https://github.com/christianwach)
+
+### Contributors
+
+* [Jonathan Reeve](https://github.com/JonathanReeve)
+* [Dominic Giglio](https://github.com/humanshell)
+* [hnla](https://github.com/hnla)
+* [merolino](https://github.com/merolino)
 
 ### License
 
-Infinity is licensed under GPL v2.0 or later.
+The Commons-In-A-Box theme and the Infinity Engine are licensed under GPL v2.0 or later.
 See LICENSE.md for full details.
 
 ### Requirements
 
-#### Base Requirements
-
 * PHP 5.2.4 or higher
-* WordPress 3.9.0 or higher
-
-#### BuddyPress Requirements (if installed)
-
-* BuddyPress 2.0 and higher
-
-#### bbPress Requirements (if installed)
-
-* bbPress 2.0 and higher
+* WordPress 4.1.0 or higher
+* BuddyPress 2.1 and higher
+* bbPress 2.1 and higher (if installed)
 
 ### Support
 
-* http://infinity.presscrew.com/docs
-* http://infinity.presscrew.com/api
-
-### Community
-
-* http://community.presscrew.com
-
-### Who's behind this thing?
-
-I am [Marshall Sorenson](https://github.com/MrMaz),
-co-founder of [Press Crew](https://github.com/PressCrew).
+* [Documentation](http://commonsinabox.org/documentation/)
+* [Community Forums](http://commonsinabox.org/groups/help-support/)
