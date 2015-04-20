@@ -19,6 +19,15 @@
  */
 function cbox_theme_customize_options()
 {
+	// use custom cbox favicon
+	ice_register_option(
+		array(
+			'group' => 'core',
+			'name' => 'custom-favicon',
+			'default_value' => 'assets/images/favicon-cbox.png'
+		)
+	);
+
 	// use custom cbox logo
 	ice_register_option(
 		array(
