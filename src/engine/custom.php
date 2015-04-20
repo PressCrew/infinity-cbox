@@ -13,3 +13,19 @@
 
 // This file is for the convenience of Infinity forks.
 // It is loaded after Infinity's core includes, immediately before initialization.
+
+/**
+ * Tweak some option settings after core config is loaded.
+ */
+function cbox_theme_customize_options()
+{
+	// use custom cbox logo
+	ice_register_option(
+		array(
+			'group' => 'header-logo',
+			'name' => 'image',
+			'default_value' => 'assets/images/logo-cbox.png'
+		)
+	);
+}
+add_action( 'infinity_config_loaded', 'cbox_theme_customize_options' );
