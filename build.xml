@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Infinity" default="dist">
+<project name="Infinity CBOX" default="dist">
 
 	<!-- Vars -->
-	<property name="slug" value="infinity" />
+	<property name="slug" value="infinity-cbox" />
 
 	<!-- Paths -->
 	<property name="phpunitpath" value="/usr/local/bin/phpunit" />
