@@ -15,6 +15,11 @@
 // It is loaded after Infinity's core includes, immediately before initialization.
 
 /**
+ * CBOX upgrades
+ */
+require_once INFINITY_CUSTOM_PATH . '/upgrade.php';
+
+/**
  * Tweak some option settings after core config is loaded.
  */
 function cbox_theme_customize_options()
