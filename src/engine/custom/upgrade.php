@@ -24,18 +24,18 @@ function cbox_theme_upgrade_ice_1_2( ICE_Upgrade $ice_upgrade )
 		// yes, rename deprecated options
 		ice_rename_options( array(
 			// buttons
-			'cbox_button_color' => 'buttons_custom-color',
+			'cbox_button_color' => 'buttons.custom-color',
 			// post thumbs
-			'cbox-thumb-height' => 'thumbs_image-height',
-			'cbox-thumb-width' => 'thumbs_image-width',
+			'cbox-thumb-height' => 'thumbs.image-height',
+			'cbox-thumb-width' => 'thumbs.image-width',
 			// slider
-			'cbox_flex_slider' => 'slider_mode',
-			'cbox-flex-slider-height' => 'slider_height',
-			'cbox-flex-slider-width' => 'slider_width',
-			'cbox_flex_slider_amount' => 'slider_amount',
-			'cbox_flex_slider_time' => 'slider_time',
-			'cbox_flex_slider_transition' => 'slider_transition',
-			'cbox_flex_slider_category' => 'slider_category'
+			'cbox_flex_slider' => 'slider.mode',
+			'cbox-flex-slider-height' => 'slider.height',
+			'cbox-flex-slider-width' => 'slider.width',
+			'cbox_flex_slider_amount' => 'slider.amount',
+			'cbox_flex_slider_time' => 'slider.time',
+			'cbox_flex_slider_transition' => 'slider.transition',
+			'cbox_flex_slider_category' => 'slider.category'
 		) );
 
 	}
