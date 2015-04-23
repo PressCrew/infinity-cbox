@@ -38,7 +38,7 @@ class ICE_Registry extends ICE_Componentable implements ICE_Visitable
 	/**
 	 * Sub item delimeter.
 	 */
-	const SUB_ITEM_DELIM = ':';
+	const SUB_ITEM_DELIM = '.';
 
 	/**
 	 * Array of valid component groups.
@@ -210,6 +210,8 @@ class ICE_Registry extends ICE_Componentable implements ICE_Visitable
 
 	/**
 	 * Return a registered component object by name and optionally group.
+	 * 
+	 * Optionally, you can pass only the name param using sugary syntax in the format: [group].[name]
 	 *
 	 * @param string $name
 	 * @param string $group
@@ -217,6 +219,18 @@ class ICE_Registry extends ICE_Componentable implements ICE_Visitable
 	 */
 	final public function get( $name, $group = self::DEFAULT_GROUP )
 	{
+		// did we get only one arg?
+		if ( 1 === func_num_args() ) {
+			// yes, do sugary parsing
+			$sugary = $this->parse_sugary_name( $name );
+			// did it parse?
+			if ( true === is_object( $sugary ) ) {
+				// override name and group
+				$name = $sugary->name;
+				$group = $sugary->group;
+			}
+		}
+		
 		// are both group and name keys set?
 		if ( true === isset( $this->components[ $group ][ $name ] ) ) {
 			// yes, return component at those keys
@@ -225,23 +239,6 @@ class ICE_Registry extends ICE_Componentable implements ICE_Visitable
 
 		// didn't find it
 		throw new Exception( sprintf( 'Unable to get component "%s": not registered', $name ) );
-	}
-
-	/**
-	 * Get component by passing [group].[name] syntax.
-	 *
-	 * @param string $name
-	 * @return ICE_Component
-	 */
-	final public function get_fancy( $name )
-	{
-		$parts = explode( self::SUB_ITEM_DELIM, $name );
-
-		if ( count( $parts ) > 1 ) {
-			return $this->get( $parts[1], $parts[0] );
-		} else {
-			return $this->get( $name );
-		}
 	}
 
 	/**
@@ -358,6 +355,54 @@ class ICE_Registry extends ICE_Componentable implements ICE_Visitable
 
 		// return empty array by default
 		return array();
+	}
+
+	/**
+	 * Attempt to parse a sugary name string into group and name.
+	 *
+	 * @param string $name
+	 * @return stdClass|false
+	 */
+	final protected function parse_sugary_name( $name )
+	{
+		// try to split at sub item delimeter
+		$parts = explode( self::SUB_ITEM_DELIM, $name );
+
+		// get exactly two chunks?
+		if ( count( $parts ) == 2 ) {
+			// yes, set up object
+			$obj = new stdClass();
+			$obj->group = $parts[0];
+			$obj->name = $parts[1];
+			// return it
+			return $obj;
+		}
+
+		// failed to parse
+		return false;
+	}
+
+	/**
+	 * Parse a sugary name and return it reformated.
+	 *
+	 * @uses sprintf()
+	 * @param string $name
+	 * @param string $format A valid sprintf() format.
+	 * @return string
+	 */
+	final public function reformat_sugary_name( $name, $format = '%1$s_%2$s')
+	{
+		// try to parse the name
+		$sugary = $this->parse_sugary_name( $name );
+
+		// get an object?
+		if ( true === is_object( $sugary ) ) {
+			// yep, return it formated
+			return sprintf( $format, $sugary->group, $sugary->name );
+		} else {
+			// nope, return it untouched
+			return $name;
+		}
 	}
 
 	/**
