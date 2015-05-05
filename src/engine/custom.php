@@ -15,31 +15,16 @@
 // It is loaded after Infinity's core includes, immediately before initialization.
 
 /**
+ * CBOX actions
+ */
+require_once INFINITY_CUSTOM_PATH . '/actions.php';
+
+/**
+ * CBOX filters
+ */
+require_once INFINITY_CUSTOM_PATH . '/filters.php';
+
+/**
  * CBOX upgrades
  */
 require_once INFINITY_CUSTOM_PATH . '/upgrade.php';
-
-/**
- * Tweak some option settings after core config is loaded.
- */
-function cbox_theme_customize_options()
-{
-	// use custom cbox favicon
-	ice_register_option(
-		array(
-			'group' => 'core',
-			'name' => 'custom-favicon',
-			'default_value' => 'assets/images/favicon-cbox.png'
-		)
-	);
-
-	// use custom cbox logo
-	ice_register_option(
-		array(
-			'group' => 'header-logo',
-			'name' => 'image',
-			'default_value' => 'assets/images/logo-cbox.png'
-		)
-	);
-}
-add_action( 'infinity_config_loaded', 'cbox_theme_customize_options' );
