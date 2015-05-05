@@ -11,6 +11,25 @@
  * @since 1.2
  */
 
+// load libs
+ICE_Loader::load_lib( 'utils/compat' );
+ICE_Loader::load_lib( 'utils/upgrade' );
+
+
+/**
+ * Trigger an upgrade attempt upon theme activation.
+ */
+function cbox_theme_upgrade()
+{
+	// new upgrade instance
+	$upgrade = new CBOX_Upgrade_1_1( 'cbox_upgrade' );
+
+	// run it
+	$upgrade->run();
+}
+add_action( 'infinity_dashboard_activated', 'cbox_theme_upgrade' );
+
+
 /**
  * Special actions to perform when ICE is upgraded to v1.2.
  *
@@ -41,3 +60,37 @@ function cbox_theme_upgrade_ice_1_2( ICE_Upgrade $ice_upgrade )
 	}
 }
 add_action( 'ice_theme_upgraded',  'cbox_theme_upgrade_ice_1_2' );
+
+
+//
+// Classes
+//
+
+
+/**
+ * Upgrades required for version 1.1.
+ */
+class CBOX_Upgrade_1_1 extends ICE_Upgrade
+{
+	/**
+	 */
+	public function run()
+	{
+		// current version less than 1.1?
+		if ( true === $this->version_compare( '1.1', '<' ) ) {
+
+			// rename all deprecated slider postmeta keys used in previous versions.
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_custom_url', 'slider_custom_url' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_hide_caption', 'slider_hide_caption' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_slider_excerpt', 'slider_excerpt' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_enable_custom_video', 'slider_video_enable' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_video_url', 'slider_video_url' );
+
+			// bump the version
+			$this->version_bump( '1.1' );
+		}
+
+		// all done
+		return;
+	}
+}
