@@ -3,7 +3,7 @@
 <project name="Infinity CBOX" default="dist">
 
 	<!-- Vars -->
-	<property name="slug" value="infinity-cbox" />
+	<property name="slug" value="cbox-theme" />
 
 	<!-- Paths -->
 	<property name="phpunitpath" value="/usr/local/bin/phpunit" />
