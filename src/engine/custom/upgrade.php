@@ -59,7 +59,18 @@ class CBOX_Upgrade_1_1 extends ICE_Upgrade
 				'cbox_flex_slider_amount' => 'slider.amount',
 				'cbox_flex_slider_time' => 'slider.time',
 				'cbox_flex_slider_transition' => 'slider.transition',
-				'cbox_flex_slider_category' => 'slider.category'
+				'cbox_flex_slider_category' => 'slider.category',
+				// bp protect
+				'cbox-buddypress-protect.toggle' => 'bp-protect.toggle',
+				// bp tour
+				'cbox-buddypress-tour.start' => 'bp-tour.start',
+				'cbox-buddypress-tour.all' => 'bp-tour.all',
+				'cbox-buddypress-tour.friends' => 'bp-tour.friends',
+				'cbox-buddypress-tour.groups' => 'bp-tour.groups',
+				'cbox-buddypress-tour.mentions' => 'bp-tour.mentions',
+				'cbox-buddypress-tour.favorites' => 'bp-tour.favorites',
+				'cbox-buddypress-tour.filter' => 'bp-tour.filter',
+				'cbox-buddypress-tour.update' => 'bp-tour.update'
 			) );
 
 			// rename all deprecated slider postmeta keys used in previous versions.
