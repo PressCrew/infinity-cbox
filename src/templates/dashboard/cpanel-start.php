@@ -15,7 +15,7 @@
 </p>
 
 <?php
-	get_template_part( 'templates/dashboard/cpanel-help', get_template() );
+	get_template_part( 'templates/dashboard/cpanel-help', get_stylesheet() );
 ?>
 
 <h3>
@@ -127,17 +127,6 @@
 			<li>Gravatar power tool</li>
 			<li>Design simple custom features by combining options with feature templates</li>
 			<li>Write your own advanced custom features (req PHP)</li>
-		</ul>
-	</li>
-	<li>
-		Shortcodes
-		<ul>
-			<li>Define custom shortcodes based on re-usable types</li>
-			<li>Define multiple shortcodes which execute the same callback but have different default attributes</li>
-			<li>Write custom shortcode types (req PHP)</li>
-			<li>Easily override a shortcode's settings that were defined by any parent theme (title, description, etc)</li>
-			<li>Easily override a shortcode's default attributes that were set by any parent theme</li>
-			<li>Easily override a shortcode's template that were set by any parent theme (override file, or location)</li>
 		</ul>
 	</li>
 	<li>

@@ -18,8 +18,6 @@
 	<?php
 		do_action( 'open_head' );
 	?>
-	<!-- basic title -->
-	<title><?php infinity_base_title(); ?></title>
 	<!-- core meta tags -->
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<meta name="generator" content="WordPress <?php bloginfo('version'); ?>" />
