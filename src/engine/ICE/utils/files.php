@@ -126,7 +126,7 @@ final class ICE_Files extends ICE_Base
 	 * @param string $path
 	 * @return string
 	 */
-	public static function path_normalize( $path )
+	static public function path_normalize( $path )
 	{
 		// run realpath on absolute paths
 		if ( self::path_is_absolute( $path ) ) {
@@ -203,7 +203,7 @@ final class ICE_Files extends ICE_Base
 	 * @param boolean $absolute Set to true to return abolute path to file
 	 * @return array
 	 */
-	public function list_filtered( $dir, $regex, $absolute = false )
+	static public function list_filtered( $dir, $regex, $absolute = false )
 	{
 		// does the directory exist?
 		if ( is_dir( $dir ) ) {

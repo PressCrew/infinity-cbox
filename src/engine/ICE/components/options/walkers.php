@@ -112,8 +112,9 @@ class ICE_Option_Walker_Page extends Walker_Page
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param object $page Page data object. Not used.
 	 * @param int $depth Depth of page. Not Used.
+	 * @param array $args An array of additional arguments. Not used.
 	 */
-	function end_el(&$output, $page, $depth) {
+	function end_el(&$output, $page, $depth, $args = array() ) {
 		$output .= PHP_EOL;
 	}
 }
