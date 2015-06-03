@@ -431,7 +431,7 @@ class ICE_Styles extends ICE_Enqueue
 		extract( $settings, EXTR_IF_EXISTS );
 
 		// register style with wp
-		wp_register_style( $handle, $src, $deps, $ver, $media );
+		@wp_register_style( $handle, $src, $deps, $ver, $media );
 
 		// call delayed enqueuer
 		$this->add( $handle, $settings );
@@ -708,7 +708,7 @@ class ICE_Scripts extends ICE_Enqueue
 		extract( $settings, EXTR_IF_EXISTS );
 
 		// register script with wp
-		wp_register_script( $handle, $src, $deps, $ver, $in_footer );
+		@wp_register_script( $handle, $src, $deps, $ver, $in_footer );
 
 		// call delayed enqueuer
 		$this->add( $handle, $settings );
