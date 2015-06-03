@@ -74,11 +74,11 @@ class CBOX_Upgrade_1_1 extends ICE_Upgrade
 			) );
 
 			// rename all deprecated slider postmeta keys used in previous versions.
-			ICE_Compat_Posts::rename_postmeta_key( '_cbox_custom_url', 'slider_custom_url' );
-			ICE_Compat_Posts::rename_postmeta_key( '_cbox_hide_caption', 'slider_hide_caption' );
-			ICE_Compat_Posts::rename_postmeta_key( '_cbox_slider_excerpt', 'slider_excerpt' );
-			ICE_Compat_Posts::rename_postmeta_key( '_cbox_enable_custom_video', 'slider_video_enable' );
-			ICE_Compat_Posts::rename_postmeta_key( '_cbox_video_url', 'slider_video_url' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_custom_url', '_infext_slider_custom_url' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_hide_caption', '_infext_slider_hide_caption' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_slider_excerpt', '_infext_slider_excerpt' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_enable_custom_video', '_infext_slider_video_enable' );
+			ICE_Compat_Posts::rename_postmeta_key( '_cbox_video_url', '_infext_slider_video_url' );
 
 			// bump the version
 			$this->version_bump( '1.1' );
