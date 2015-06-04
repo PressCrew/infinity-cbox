@@ -98,6 +98,14 @@ abstract class ICE_Enqueue extends ICE_Base
 	abstract protected function enqueue_now( $handle );
 
 	/**
+	 * Register an asset for later enqueueing.
+	 *
+	 * @param string $handle
+	 * @param array $args
+	 */
+	abstract public function register( $handle, $args = array() );
+
+	/**
 	 * The template method is called just in time to register defaults.
 	 */
 	abstract protected function register_defaults();
@@ -204,18 +212,33 @@ abstract class ICE_Enqueue extends ICE_Base
 	}
 
 	/**
+	 * Return settings for given handle.
+	 *
+	 * @param string $handle
+	 * @return array|false
+	 */
+	protected function get_settings( $handle )
+	{
+		// do settings exist?
+		if ( true === isset( $this->settings[ $handle ] ) ) {
+			// yes, return them
+			return $this->settings[ $handle ];
+		}
+
+		// no settings found
+		return false;
+	}
+
+	/**
 	 * Add an asset for later enqueueing.
 	 *
 	 * @param string $handle
 	 * @param array $args
 	 */
-	public function enqueue( $handle, $args )
+	public function enqueue( $handle, $args = array() )
 	{
-		// has already been added?
-		if ( false === $this->check_enqueued( $handle ) ) {
-			// nope, add it
-			$this->add( $handle, $args );
-		}
+		// simply call register
+		$this->register( $handle, $args );
 	}
 
 	/**
@@ -233,8 +256,8 @@ abstract class ICE_Enqueue extends ICE_Base
 		// add to asset objects stack
 		$this->objects[ $handle ] = $asset;
 
-		// call standard enqueuer
-		$this->add( $handle, $args );
+		// register it
+		$this->register( $handle, $args );
 
 		// return the handle for caller's reference
 		return $handle;
@@ -363,7 +386,23 @@ class ICE_Styles extends ICE_Enqueue
 	 */
 	protected function enqueue_now( $handle )
 	{
-		wp_enqueue_style( $handle );
+		// try to get settings
+		$settings = $this->get_settings( $handle );
+
+		// have settings?
+		if ( true === is_array( $settings ) ) {
+			// call enqueue with settings as args
+			wp_enqueue_style(
+				$handle,
+				$settings['src'],
+				$settings['deps'],
+				$settings['ver'],
+				$settings['media']
+			);
+		} else {
+			// call enqueue with handle only
+			wp_enqueue_style( $handle );
+		}
 	}
 
 	/**
@@ -405,16 +444,13 @@ class ICE_Styles extends ICE_Enqueue
 	 * @param string $handle
 	 * @param array $args
 	 */
-	public function register( $handle, $args )
+	public function register( $handle, $args = array() )
 	{
 		// has already been enqueued?
 		if ( true === $this->check_enqueued( $handle ) ) {
 			// yes, don't overwrite
 			return;
 		}
-
-		// init local vars
-		$src = $deps = $ver = $media = null;
 
 		// default args
 		$defaults = array(
@@ -426,12 +462,6 @@ class ICE_Styles extends ICE_Enqueue
 
 		// parse em
 		$settings = wp_parse_args( $args, $defaults );
-
-		// extract em
-		extract( $settings, EXTR_IF_EXISTS );
-
-		// register style with wp
-		wp_register_style( $handle, $src, $deps, $ver, $media );
 
 		// call delayed enqueuer
 		$this->add( $handle, $settings );
@@ -502,7 +532,23 @@ class ICE_Scripts extends ICE_Enqueue
 	 */
 	protected function enqueue_now( $handle )
 	{
-		wp_enqueue_script( $handle );
+		// try to get settings
+		$settings = $this->get_settings( $handle );
+
+		// have settings?
+		if ( true === is_array( $settings ) ) {
+			// call enqueue with settings as args
+			wp_enqueue_script(
+				$handle,
+				$settings['src'],
+				$settings['deps'],
+				$settings['ver'],
+				$settings['in_footer']
+			);
+		} else {
+			// call enqueue with handle only
+			wp_enqueue_script( $handle );
+		}
 	}
 
 	/**
@@ -682,16 +728,13 @@ class ICE_Scripts extends ICE_Enqueue
 	 * @param string $handle
 	 * @param array $args
 	 */
-	public function register( $handle, $args )
+	public function register( $handle, $args = array() )
 	{
 		// has already been enqueued?
 		if ( true === $this->check_enqueued( $handle ) ) {
 			// yes, don't overwrite
 			return;
 		}
-
-		// init local vars
-		$src = $deps = $ver = $in_footer = null;
 
 		// default args
 		$defaults = array(
@@ -703,12 +746,6 @@ class ICE_Scripts extends ICE_Enqueue
 
 		// parse em
 		$settings = wp_parse_args( $args, $defaults );
-
-		// extract em
-		extract( $settings, EXTR_IF_EXISTS );
-
-		// register script with wp
-		wp_register_script( $handle, $src, $deps, $ver, $in_footer );
 
 		// call delayed enqueuer
 		$this->add( $handle, $settings );
