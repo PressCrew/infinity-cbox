@@ -27,7 +27,7 @@ function cbox_theme_upgrade()
 	// run it
 	$upgrade->run();
 }
-add_action( 'infinity_dashboard_activated', 'cbox_theme_upgrade' );
+add_action( 'admin_init', 'cbox_theme_upgrade' );
 
 //
 // Classes
