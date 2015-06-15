@@ -26,6 +26,7 @@ add_action( 'close_body', 'infinity_google_analytics' );
 function infinity_buddypress_tour()
 {
 	if (
+		true === infinity_plugin_supported( 'buddypress' ) &&
 		true === bp_is_activity_component() &&
 		false === bp_is_user() &&
 		true === is_user_logged_in()
