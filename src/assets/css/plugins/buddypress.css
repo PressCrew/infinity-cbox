@@ -435,7 +435,6 @@
 }
 .infinity-bp #buddypress div.item-list-tabs ul li.last select {
 	display: inline-block;
-	margin-left: 8px;
 	margin-top: 4px;
 }
 .infinity-bp #buddypress div.item-list-tabs ul li a,
@@ -465,6 +464,9 @@
 .infinity-bp #buddypress div.item-list-tabs ul li.selected a span,
 .infinity-bp #buddypress div.item-list-tabs ul li.current a span {
 	border-color: #666;
+}
+.infinity-bp #buddypress div.item-list-tabs#subnav ul li.filter {
+	padding-left: 5px;
 }
 .infinity-bp #buddypress div.item-list-tabs#subnav {
 	border-bottom: 1px solid #e8e8e8;
@@ -585,9 +587,7 @@
 .infinity-bp #buddypress .field-visibility-settings li {
 	list-style: none;
 }
-/* FIX:  hide the horizontal navigation on settings pages using CSS */
-.infinity-bp #content #buddypress .settings #item-nav,
-.infinity-bp #content #buddypress #object-nav {
+.infinity-bp.bp-user #content #buddypress #item-nav {
 	display: none;
 }
 
